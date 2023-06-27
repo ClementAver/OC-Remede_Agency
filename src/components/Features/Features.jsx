@@ -3,7 +3,7 @@ import Feature from "../Feature/Feature";
 export default function Features() {
   return (
     <section className="features">
-      <h2 class="sr-only">Features</h2>
+      <h2 className="sr-only">Features</h2>
       <Feature
         src="./assets/icon-chat.png"
         alt="Chat Icon"

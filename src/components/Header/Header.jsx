@@ -5,7 +5,7 @@ export default function Header() {
     <nav className="main-nav">
       <Link
         className="main-nav-logo"
-        to="/home"
+        to="/"
       >
         <img
           className="main-nav-logo-image"
