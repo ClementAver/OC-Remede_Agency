@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { signInReducer } from "../pages/SignIn/signIn.reducer";
+import { signUpReducer } from "../pages/SignUp/signup.reducer";
 
 export default configureStore({
   reducer: {
-    //login : loginReducer,
+    signIn: signInReducer,
+    signUp: signUpReducer,
   },
 });

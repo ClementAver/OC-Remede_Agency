@@ -1,27 +1,19 @@
 import Button from "../../components/Button/Button";
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postOrUpdateSignIn } from "./signIn.reducer";
+import { postOrUpdateSignUp } from "./signup.reducer";
 import { Link, Navigate } from "react-router-dom";
 
-export default function SignIn() {
+export default function SignUp() {
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.signIn.data.body.token);
+  const message = useSelector((state) => state.signUp.data.message);
 
-  const rememberInput = useRef();
-  const [remember, setRemember] = useState(false);
-  const handleRemember = () => {
-    setRemember(rememberInput.current.checked);
-  };
-
-  if (token !== null) {
-    if (remember) {
-      document.cookie = `token=${token}; path =/; max-age= 86400; secure; samesite=lax`;
-    }
+  if (message === "User successfully created") {
+    alert(message);
     return (
       <Navigate
-        to="/"
+        to="/sign-in"
         replace={true}
       />
     );
@@ -30,14 +22,14 @@ export default function SignIn() {
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
-          <h1>Sign In</h1>
+          <h1>Sign Up</h1>
           <form>
             <div className="input-wrapper">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Email</label>
               <input
                 type="text"
-                name="username"
-                id="username"
+                name="email"
+                id="email"
               />
             </div>
             <div className="input-wrapper">
@@ -48,30 +40,36 @@ export default function SignIn() {
                 id="password"
               />
             </div>
-            <div className="input-remember">
+            <div className="input-wrapper">
+              <label htmlFor="firstname">First Name</label>
               <input
-                type="checkbox"
-                name="remember-me"
-                id="remember-me"
-                ref={rememberInput}
-                onClick={handleRemember}
+                type="text"
+                name="firstname"
+                id="firstname"
               />
-              <label htmlFor="remember-me">Remember me</label>
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="lastname">Last Name</label>
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+              />
             </div>
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(postOrUpdateSignIn);
+                dispatch(postOrUpdateSignUp);
               }}
               className="sign-in-button"
-              text="Sign In"
+              text="Sign Up"
             />
           </form>
           <Link
             className="sign-in-link"
-            to="/sign-up"
+            to="/sign-in"
           >
-            Sign up
+            Sign in
           </Link>
         </section>
       </main>

@@ -74,6 +74,34 @@ body {
   width: 200px;
 }
 
+.sign-out-button {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0);
+  color: #2c3e50;
+  border: none;
+  margin-right: 0.5rem;
+  padding: 0;
+  display: flex;
+}
+.sign-out-button:hover {
+  text-decoration: underline;
+}
+
+.sign-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
+  fill: #2c3e50;
+  margin-right: 0.2rem;
+}
+
+.header-nav-layout {
+  display: flex;
+  gap: 0.6rem;
+}
+
 .hero {
   background-image: url("../assets/bank-tree.jpeg");
   background-position: 0 -50px;
@@ -211,6 +239,11 @@ body {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+}
+
+.sign-in-link {
+  display: block;
+  margin-top: 1rem;
 }
 
 .edit-button {
