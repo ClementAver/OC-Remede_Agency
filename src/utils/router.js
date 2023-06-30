@@ -3,8 +3,8 @@ import App from "../App";
 import NotFound from "../pages/NotFound/NotFound";
 import SignIn from "../pages/SignIn/SignIn";
 import Home from "../pages/Home/Home";
-import User from "../pages/User/User";
 import SignUp from "../pages/SignUp/SignUp";
+import Profile from "../pages/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -25,8 +25,8 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/user",
-        element: <User />,
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

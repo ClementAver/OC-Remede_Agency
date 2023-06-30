@@ -6,43 +6,47 @@ export const initialState = {
     status: null,
     message: null,
     body: {
-      token: null,
+      email: null,
+      firstName: null,
+      lastName: null,
+      createdAt: null,
+      updatedAt: null,
+      id: null,
     },
   },
   error: null,
 };
 
-export async function postOrUpdateSignIn(dispatch, getState) {
-  const status = getState().signIn.status;
+export async function postOrUpdateHeader(dispatch, getState) {
+  const status = getState().header.status;
+  const token = getState().signIn.data.body.token;
+
   if (status === "pending" || status === "updating") {
     return;
   }
-  dispatch(signInPost());
-  try {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const response = await fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: username,
-        password: password,
-      }),
-    });
-    const data = await response.json();
-    dispatch(signInResolved(data));
-  } catch (error) {
-    dispatch(signInRejected(error));
-  }
+  dispatch(headerPost(token));
+
+  var myHeaders = new Headers();
+  console.log(token);
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
+    .then((response) => response.json())
+    .then((data) => dispatch(headerResolved(data)))
+    .catch((error) => dispatch(headerRejected(error)));
 }
 
 const { actions, reducer } = createSlice({
-  name: "signIn",
+  name: "header",
   initialState: initialState,
   reducers: {
-    signInPost: (draft) => {
+    headerPost: (draft) => {
       if (draft.status === "void") {
         draft.status = "pending";
         return;
@@ -57,7 +61,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signInResolved: (draft, action) => {
+    headerResolved: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.status = "resolved";
         draft.data.status = action.payload.status;
@@ -68,21 +72,27 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signInRejected: (draft, action) => {
+    headerRejected: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
+        console.log(action.payload);
         draft.status = "rejected";
         draft.error = action.payload;
         draft.data = {
           status: null,
           message: null,
           body: {
-            token: null,
+            email: null,
+            firstNAme: null,
+            lastName: null,
+            createdAt: null,
+            updatedAt: null,
+            id: null,
           },
         };
         return;
       }
     },
-    signInReset: (draft) => {
+    headerReset: (draft) => {
       if (draft.data !== initialState.data) {
         draft.status = "void";
         draft.data = {
@@ -99,5 +109,5 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { signInPost, signInResolved, signInRejected, signInReset } = actions;
-export { reducer as signInReducer };
+export const { headerPost, headerResolved, headerRejected, headerReset } = actions;
+export { reducer as headerReducer };

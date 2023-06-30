@@ -43,14 +43,6 @@ export async function postOrUpdateSignUp(dispatch, getState) {
 const { actions, reducer } = createSlice({
   name: "signUp",
   initialState: initialState,
-  prepare: (id, password, firstName, lastName) => ({
-    payload: {
-      email: id,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-    },
-  }),
   reducers: {
     signUpPost: (draft) => {
       if (draft.status === "void") {

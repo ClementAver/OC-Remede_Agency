@@ -3,6 +3,8 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postOrUpdateSignIn } from "./signIn.reducer";
 import { Link, Navigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ export default function SignIn() {
     return (
       <main className="main bg-dark">
         <section className="sign-in-content">
-          <i className="fa fa-user-circle sign-in-icon"></i>
+          <FontAwesomeIcon icon={faCircleUser} />
           <h1>Sign In</h1>
           <form>
             <div className="input-wrapper">
