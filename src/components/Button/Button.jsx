@@ -1,6 +1,7 @@
-export default function Button({ className, onClick, text }) {
+export default function Button({ type, className, onClick, text }) {
   return (
     <button
+      type={type}
       className={className}
       onClick={onClick}
     >

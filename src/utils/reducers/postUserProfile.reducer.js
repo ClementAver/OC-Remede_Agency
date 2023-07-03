@@ -17,14 +17,14 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateHeader(dispatch, getState) {
-  const status = getState().header.status;
+export async function postOrUpdateProfile(dispatch, getState) {
+  const status = getState().profile.status;
   const token = getState().signIn.data.body.token;
 
   if (status === "pending" || status === "updating") {
     return;
   }
-  dispatch(headerPost(token));
+  dispatch(postProfile(token));
 
   var myHeaders = new Headers();
   console.log(token);
@@ -38,15 +38,15 @@ export async function postOrUpdateHeader(dispatch, getState) {
 
   fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
     .then((response) => response.json())
-    .then((data) => dispatch(headerResolved(data)))
-    .catch((error) => dispatch(headerRejected(error)));
+    .then((data) => dispatch(profileResolved(data)))
+    .catch((error) => dispatch(profileRejected(error)));
 }
 
 const { actions, reducer } = createSlice({
-  name: "header",
+  name: "profile",
   initialState: initialState,
   reducers: {
-    headerPost: (draft) => {
+    postProfile: (draft) => {
       if (draft.status === "void") {
         draft.status = "pending";
         return;
@@ -61,7 +61,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    headerResolved: (draft, action) => {
+    profileResolved: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.status = "resolved";
         draft.data.status = action.payload.status;
@@ -72,7 +72,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    headerRejected: (draft, action) => {
+    profileRejected: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         console.log(action.payload);
         draft.status = "rejected";
@@ -92,7 +92,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    headerReset: (draft) => {
+    resetProfile: (draft) => {
       if (draft.data !== initialState.data) {
         draft.status = "void";
         draft.data = {
@@ -109,5 +109,5 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { headerPost, headerResolved, headerRejected, headerReset } = actions;
-export { reducer as headerReducer };
+export const { postProfile, profileResolved, profileRejected, resetProfile } = actions;
+export { reducer as profileReducer };

@@ -1,0 +1,21 @@
+.edit-profile {
+  button {
+    margin-bottom: 1rem;
+  }
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+
+    > div {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    button {
+      flex-grow: 1;
+      max-width: 6rem;
+    }
+  }
+}

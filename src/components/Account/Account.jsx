@@ -10,6 +10,7 @@ export default function Account() {
       </div>
       <div className="account-content-wrapper cta">
         <Button
+          type="button"
           className="transaction-button"
           text="View transactions"
         />

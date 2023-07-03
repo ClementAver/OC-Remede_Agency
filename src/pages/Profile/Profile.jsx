@@ -1,9 +1,9 @@
-import Button from "../../components/Button/Button";
 import Account from "../../components/Account/Account";
 import { useSelector } from "react-redux";
+import EditProfile from "../../components/EditProfile/EditProfile";
 
 export default function Profile() {
-  const user = useSelector((state) => state.header.data.body);
+  const user = useSelector((state) => state.profile.data.body);
 
   return (
     <main className="main bg-dark">
@@ -14,10 +14,7 @@ export default function Profile() {
           {user.firstName}
         </h1>
 
-        <Button
-          className="edit-button"
-          text="Edit Name"
-        />
+        <EditProfile />
       </div>
       <h2 className="sr-only">Accounts</h2>
       <Account />

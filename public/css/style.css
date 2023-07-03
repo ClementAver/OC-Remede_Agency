@@ -311,5 +311,22 @@ body {
     width: 200px;
   }
 }
+.edit-profile button {
+  margin-bottom: 1rem;
+}
+.edit-profile form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.edit-profile form > div {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.edit-profile form button {
+  flex-grow: 1;
+  max-width: 6rem;
+}
 
 /*# sourceMappingURL=style.css.map */

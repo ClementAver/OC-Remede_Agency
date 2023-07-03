@@ -1,20 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { signInReset } from "../../pages/SignIn/signIn.reducer";
 import { useEffect } from "react";
-import { postOrUpdateHeader } from "./header.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
+import { postOrUpdateProfile, resetProfile } from "../../utils/reducers/postUserProfile.reducer";
+import { resetLogin } from "../../utils/reducers/postUserLogin.reducer";
+import { resetEditProfile } from "../../utils/reducers/putUserProfile.reducer";
 
 export default function Header() {
   const dispatch = useDispatch();
 
   const message = useSelector((state) => state.signIn.data.message);
-  const name = useSelector((state) => state.header.data.body.firstName);
+  const name = useSelector((state) => state.profile.data.body.firstName);
 
   useEffect(() => {
     if (message === "User successfully logged in") {
-      dispatch(postOrUpdateHeader);
+      dispatch(postOrUpdateProfile);
     }
   }, [message, dispatch]);
 
@@ -31,11 +33,13 @@ export default function Header() {
           &nbsp;{name}
         </Link>
         <Link
+          to="/"
           className="main-nav-item"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
             document.cookie = `token=""; path =/; max-age=0; secure; samesite=lax`;
-            dispatch(signInReset());
+            dispatch(resetLogin());
+            dispatch(resetProfile());
+            dispatch(resetEditProfile());
           }}
         >
           <FontAwesomeIcon icon={faRightFromBracket} />

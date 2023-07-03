@@ -12,12 +12,12 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateSignIn(dispatch, getState) {
+export async function postOrUpdateLogin(dispatch, getState) {
   const status = getState().signIn.status;
   if (status === "pending" || status === "updating") {
     return;
   }
-  dispatch(signInPost());
+  dispatch(postLogin());
   try {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -32,17 +32,17 @@ export async function postOrUpdateSignIn(dispatch, getState) {
       }),
     });
     const data = await response.json();
-    dispatch(signInResolved(data));
+    dispatch(loginResolved(data));
   } catch (error) {
-    dispatch(signInRejected(error));
+    dispatch(loginRejected(error));
   }
 }
 
 const { actions, reducer } = createSlice({
-  name: "signIn",
+  name: "login",
   initialState: initialState,
   reducers: {
-    signInPost: (draft) => {
+    postLogin: (draft) => {
       if (draft.status === "void") {
         draft.status = "pending";
         return;
@@ -57,7 +57,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signInResolved: (draft, action) => {
+    loginResolved: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.status = "resolved";
         draft.data.status = action.payload.status;
@@ -68,7 +68,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signInRejected: (draft, action) => {
+    loginRejected: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.status = "rejected";
         draft.error = action.payload;
@@ -82,7 +82,7 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signInReset: (draft) => {
+    resetLogin: (draft) => {
       if (draft.data !== initialState.data) {
         draft.status = "void";
         draft.data = {
@@ -99,5 +99,5 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { signInPost, signInResolved, signInRejected, signInReset } = actions;
-export { reducer as signInReducer };
+export const { postLogin, loginResolved, loginRejected, resetLogin } = actions;
+export { reducer as loginReducer };

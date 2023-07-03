@@ -10,12 +10,12 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateSignUp(dispatch, getState) {
+export async function postOrUpdateSignup(dispatch, getState) {
   const status = getState().status;
   if (status === "pending" || status === "updating") {
     return;
   }
-  dispatch(signUpPost());
+  dispatch(postSignup());
   try {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -34,17 +34,17 @@ export async function postOrUpdateSignUp(dispatch, getState) {
       }),
     });
     const data = await response.json();
-    dispatch(signUpResolved(data));
+    dispatch(signupResolved(data));
   } catch (error) {
-    dispatch(signUpRejected(error));
+    dispatch(signupRejected(error));
   }
 }
 
 const { actions, reducer } = createSlice({
-  name: "signUp",
+  name: "signup",
   initialState: initialState,
   reducers: {
-    signUpPost: (draft) => {
+    postSignup: (draft) => {
       if (draft.status === "void") {
         draft.status = "pending";
         return;
@@ -59,14 +59,14 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    signUpResolved: (draft, action) => {
+    signupResolved: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.data = action.payload;
         draft.status = "resolved";
         return;
       }
     },
-    signUpRejected: (draft, action) => {
+    signupRejected: (draft, action) => {
       if (draft.status === "pending" || draft.status === "updating") {
         draft.status = "rejected";
         draft.error = action.payload;
@@ -77,5 +77,5 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { signUpPost, signUpResolved, signUpRejected } = actions;
-export { reducer as signUpReducer };
+export const { postSignup, signupResolved, signupRejected } = actions;
+export { reducer as signupReducer };

@@ -1,10 +1,10 @@
-import Button from "../../components/Button/Button";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postOrUpdateSignUp } from "./signup.reducer";
 import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../components/Button/Button";
+import { postOrUpdateSignup } from "../../utils/reducers/postUserSignup.reducer";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function SignUp() {
             <div className="input-wrapper">
               <label htmlFor="password">Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
               />
@@ -61,7 +61,7 @@ export default function SignUp() {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(postOrUpdateSignUp);
+                dispatch(postOrUpdateSignup);
               }}
               className="sign-in-button"
               text="Sign Up"

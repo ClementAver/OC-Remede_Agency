@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { signInReducer } from "../pages/SignIn/signIn.reducer";
-import { signUpReducer } from "../pages/SignUp/signup.reducer";
-import { headerReducer } from "../components/Header/header.reducer";
+import { loginReducer } from "./reducers/postUserLogin.reducer";
+import { signupReducer } from "./reducers/postUserSignup.reducer";
+import { profileReducer } from "./reducers/postUserProfile.reducer";
+import { editProfileReducer } from "./reducers/putUserProfile.reducer";
 
 export default configureStore({
   reducer: {
-    signIn: signInReducer,
-    signUp: signUpReducer,
-    header: headerReducer,
+    signIn: loginReducer,
+    signUp: signupReducer,
+    profile: profileReducer,
+    editProfile: editProfileReducer,
   },
 });
