@@ -11,7 +11,7 @@ export default function Profile() {
         <h1>
           Welcome back
           <br />
-          {user.firstName}
+          {user.firstName} {user.lastName}
         </h1>
 
         <EditProfile />

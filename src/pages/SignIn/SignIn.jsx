@@ -11,7 +11,21 @@ export default function SignIn() {
 
   const token = useSelector((state) => state.signIn.data.body.token);
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const usernameInput = useRef();
+  const passwordInput = useRef();
   const rememberInput = useRef();
+
+  const handleUsername = () => {
+    setUsername(usernameInput.current.value);
+  };
+
+  const handlePassword = () => {
+    setPassword(passwordInput.current.value);
+  };
+
   const [remember, setRemember] = useState(false);
   const handleRemember = () => {
     setRemember(rememberInput.current.checked);
@@ -40,6 +54,8 @@ export default function SignIn() {
                 type="text"
                 name="username"
                 id="username"
+                ref={usernameInput}
+                onKeyUp={handleUsername}
               />
             </div>
             <div className="input-wrapper">
@@ -48,6 +64,8 @@ export default function SignIn() {
                 type="password"
                 name="password"
                 id="password"
+                ref={passwordInput}
+                onKeyUp={handlePassword}
               />
             </div>
             <div className="input-remember">
@@ -64,7 +82,7 @@ export default function SignIn() {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(postOrUpdateLogin);
+                dispatch(postOrUpdateLogin(username, password));
               }}
               className="sign-in-button"
               text="Sign In"

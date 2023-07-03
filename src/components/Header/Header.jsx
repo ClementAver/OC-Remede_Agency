@@ -7,6 +7,7 @@ import { faCircleUser, faRightFromBracket } from "@fortawesome/free-solid-svg-ic
 import { postOrUpdateProfile, resetProfile } from "../../utils/reducers/postUserProfile.reducer";
 import { resetLogin } from "../../utils/reducers/postUserLogin.reducer";
 import { resetEditProfile } from "../../utils/reducers/putUserProfile.reducer";
+import { resetSignup } from "../../utils/reducers/postUserSignup.reducer";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function Header() {
             dispatch(resetLogin());
             dispatch(resetProfile());
             dispatch(resetEditProfile());
+            dispatch(resetSignup());
           }}
         >
           <FontAwesomeIcon icon={faRightFromBracket} />

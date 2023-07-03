@@ -12,30 +12,33 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateLogin(dispatch, getState) {
-  const status = getState().signIn.status;
-  if (status === "pending" || status === "updating") {
-    return;
-  }
-  dispatch(postLogin());
-  try {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const response = await fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: username,
-        password: password,
-      }),
-    });
-    const data = await response.json();
-    dispatch(loginResolved(data));
-  } catch (error) {
-    dispatch(loginRejected(error));
-  }
+export function postOrUpdateLogin(username, password) {
+  return async (dispatch, getState) => {
+    const status = getState().signIn.status;
+    if (status === "pending" || status === "updating") {
+      return;
+    }
+    dispatch(postLogin());
+    try {
+      // const username = document.getElementById("username").value;
+      // const password = document.getElementById("password").value;
+
+      const response = await fetch("http://localhost:3001/api/v1/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: username,
+          password: password,
+        }),
+      });
+      const data = await response.json();
+      dispatch(loginResolved(data));
+    } catch (error) {
+      dispatch(loginRejected(error));
+    }
+  };
 }
 
 const { actions, reducer } = createSlice({

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../Button/Button";
 
@@ -9,12 +9,26 @@ export default function EditProfile() {
   const dispatch = useDispatch();
   const [deployed, setDeployed] = useState(false);
 
+  const firstNameInput = useRef();
+  const lastNameInput = useRef();
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const handleDeploy = () => {
     setDeployed(!deployed);
   };
 
+  const handleFirstName = () => {
+    setFirstName(firstNameInput.current.value);
+  };
+
+  const handleLastName = () => {
+    setLastName(lastNameInput.current.value);
+  };
+
   const handleSave = async () => {
-    dispatch(putOrUpdateEditProfile);
+    dispatch(putOrUpdateEditProfile(firstName, lastName));
     dispatch(postOrUpdateProfile);
     setDeployed(!deployed);
   };
@@ -34,11 +48,15 @@ export default function EditProfile() {
               type="text"
               name="firstname"
               id="firstname"
+              ref={firstNameInput}
+              onKeyUp={handleFirstName}
             ></input>
             <input
               type="text"
               name="lastname"
               id="lastname"
+              ref={lastNameInput}
+              onKeyUp={handleLastName}
             ></input>
           </div>
           <div>

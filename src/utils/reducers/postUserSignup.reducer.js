@@ -10,34 +10,32 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateSignup(dispatch, getState) {
-  const status = getState().status;
-  if (status === "pending" || status === "updating") {
-    return;
-  }
-  dispatch(postSignup());
-  try {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const firstName = document.getElementById("firstname").value;
-    const lastName = document.getElementById("lastname").value;
-    const response = await fetch("http://localhost:3001/api/v1/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      }),
-    });
-    const data = await response.json();
-    dispatch(signupResolved(data));
-  } catch (error) {
-    dispatch(signupRejected(error));
-  }
+export function postOrUpdateSignup(email, password, firstName, lastName) {
+  return async (dispatch, getState) => {
+    const status = getState().status;
+    if (status === "pending" || status === "updating") {
+      return;
+    }
+    dispatch(postSignup());
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/user/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+        }),
+      });
+      const data = await response.json();
+      dispatch(signupResolved(data));
+    } catch (error) {
+      dispatch(signupRejected(error));
+    }
+  };
 }
 
 const { actions, reducer } = createSlice({
@@ -74,8 +72,20 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
+    resetSignup: (draft) => {
+      if (draft.data !== initialState.data) {
+        draft.status = "void";
+        draft.data = {
+          status: null,
+          message: null,
+          body: null,
+        };
+        draft.error = null;
+        return;
+      }
+    },
   },
 });
 
-export const { postSignup, signupResolved, signupRejected } = actions;
+export const { postSignup, signupResolved, signupRejected, resetSignup } = actions;
 export { reducer as signupReducer };

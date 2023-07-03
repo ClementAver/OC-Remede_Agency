@@ -10,37 +10,37 @@ export const initialState = {
   error: null,
 };
 
-export async function putOrUpdateEditProfile(dispatch, getState) {
-  const status = getState().signIn.status;
-  const token = getState().signIn.data.body.token;
+export function putOrUpdateEditProfile(firstName, lastName) {
+  return async (dispatch, getState) => {
+    const status = getState().signIn.status;
+    const token = getState().signIn.data.body.token;
 
-  if (status === "pending" || status === "updating") {
-    return;
-  }
+    if (status === "pending" || status === "updating") {
+      return;
+    }
 
-  dispatch(putEditProfile());
-  const firstName = document.getElementById("firstname").value;
-  const lastName = document.getElementById("lastname").value;
+    dispatch(putEditProfile());
 
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", `Bearer ${token}`);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
-  var raw = JSON.stringify({
-    firstName: firstName,
-    lastName: lastName,
-  });
+    var raw = JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+    });
 
-  var requestOptions = {
-    method: "PUT",
-    headers: myHeaders,
-    body: raw,
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+    };
+
+    fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
+      .then((response) => response.json())
+      .then((data) => dispatch(editProfileResolved(data)))
+      .catch((error) => dispatch(editProfileRejected(error)));
   };
-
-  fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
-    .then((response) => response.json())
-    .then((data) => dispatch(editProfileResolved(data)))
-    .catch((error) => dispatch(editProfileRejected(error)));
 }
 
 const { actions, reducer } = createSlice({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,32 @@ export default function SignUp() {
   const dispatch = useDispatch();
 
   const message = useSelector((state) => state.signUp.data.message);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const emailInput = useRef();
+  const passwordInput = useRef();
+  const firstNameInput = useRef();
+  const lastNameInput = useRef();
+
+  const handleEmail = () => {
+    setEmail(emailInput.current.value);
+  };
+
+  const handlePassword = () => {
+    setPassword(passwordInput.current.value);
+  };
+
+  const handleFirstName = () => {
+    setFirstName(firstNameInput.current.value);
+  };
+
+  const handleLastName = () => {
+    setLastName(lastNameInput.current.value);
+  };
 
   if (message === "User successfully created") {
     alert(message);
@@ -32,6 +58,8 @@ export default function SignUp() {
                 type="text"
                 name="email"
                 id="email"
+                ref={emailInput}
+                onKeyUp={handleEmail}
               />
             </div>
             <div className="input-wrapper">
@@ -40,6 +68,8 @@ export default function SignUp() {
                 type="password"
                 name="password"
                 id="password"
+                ref={passwordInput}
+                onKeyUp={handlePassword}
               />
             </div>
             <div className="input-wrapper">
@@ -48,6 +78,8 @@ export default function SignUp() {
                 type="text"
                 name="firstname"
                 id="firstname"
+                ref={firstNameInput}
+                onKeyUp={handleFirstName}
               />
             </div>
             <div className="input-wrapper">
@@ -56,12 +88,14 @@ export default function SignUp() {
                 type="text"
                 name="lastname"
                 id="lastname"
+                ref={lastNameInput}
+                onKeyUp={handleLastName}
               />
             </div>
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(postOrUpdateSignup);
+                dispatch(postOrUpdateSignup(email, password, firstName, lastName));
               }}
               className="sign-in-button"
               text="Sign Up"
