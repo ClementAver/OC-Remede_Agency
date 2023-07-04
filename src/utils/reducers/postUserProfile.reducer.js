@@ -17,29 +17,32 @@ export const initialState = {
   error: null,
 };
 
-export async function postOrUpdateProfile(dispatch, getState) {
-  const status = getState().profile.status;
-  const token = getState().signIn.data.body.token;
+export function postOrUpdateProfile(cookie) {
+  return async (dispatch, getState) => {
+    const status = getState().profile.status;
+    let token = "";
+    cookie ? (token = cookie) : (token = getState().signIn.data.body.token);
 
-  if (status === "pending" || status === "updating") {
-    return;
-  }
-  dispatch(postProfile(token));
+    if (status === "pending" || status === "updating") {
+      return;
+    }
+    dispatch(postProfile(token));
 
-  var myHeaders = new Headers();
-  console.log(token);
-  myHeaders.append("Authorization", `Bearer ${token}`);
+    var myHeaders = new Headers();
+    console.log(token);
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
-  var requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    redirect: "follow",
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
+      .then((response) => response.json())
+      .then((data) => dispatch(profileResolved(data)))
+      .catch((error) => dispatch(profileRejected(error)));
   };
-
-  fetch("http://localhost:3001/api/v1/user/profile", requestOptions)
-    .then((response) => response.json())
-    .then((data) => dispatch(profileResolved(data)))
-    .catch((error) => dispatch(profileRejected(error)));
 }
 
 const { actions, reducer } = createSlice({

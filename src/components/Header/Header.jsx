@@ -12,18 +12,19 @@ import { resetSignup } from "../../utils/reducers/postUserSignup.reducer";
 export default function Header() {
   const dispatch = useDispatch();
 
-  const message = useSelector((state) => state.signIn.data.message);
+  const loginMessage = useSelector((state) => state.signIn.data.message);
+  const profileMessage = useSelector((state) => state.profile.data.message);
   const name = useSelector((state) => state.profile.data.body.firstName);
 
   useEffect(() => {
-    if (message === "User successfully logged in") {
-      dispatch(postOrUpdateProfile);
+    if (loginMessage === "User successfully logged in") {
+      dispatch(postOrUpdateProfile());
     }
-  }, [message, dispatch]);
+  }, [loginMessage, dispatch]);
 
   let sign = null;
 
-  if (message === "User successfully logged in") {
+  if (profileMessage === "Successfully got user profile data") {
     sign = (
       <nav className="header-nav-layout">
         <Link

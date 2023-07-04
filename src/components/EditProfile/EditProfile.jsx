@@ -29,7 +29,7 @@ export default function EditProfile() {
 
   const handleSave = async () => {
     dispatch(putOrUpdateEditProfile(firstName, lastName));
-    dispatch(postOrUpdateProfile);
+    dispatch(postOrUpdateProfile());
     setDeployed(!deployed);
   };
 
