@@ -37,7 +37,7 @@ export default function SignIn() {
     }
     return (
       <Navigate
-        to="/"
+        to="/profile"
         replace={true}
       />
     );

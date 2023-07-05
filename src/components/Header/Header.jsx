@@ -54,7 +54,7 @@ export default function Header() {
     sign = (
       <Link
         className="main-nav-item"
-        to="/sign-in"
+        to="/login"
       >
         <FontAwesomeIcon icon={faCircleUser} />
         &nbsp;Sign In
