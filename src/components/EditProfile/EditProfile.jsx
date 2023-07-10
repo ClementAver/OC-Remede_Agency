@@ -42,7 +42,7 @@ export default function EditProfile() {
         onClick={handleDeploy}
       />
       {deployed ? (
-        <form>
+        <form onSubmit={handleSave}>
           <div>
             <input
               type="text"

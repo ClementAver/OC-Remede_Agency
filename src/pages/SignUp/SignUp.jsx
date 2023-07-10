@@ -41,7 +41,7 @@ export default function SignUp() {
     alert(message);
     return (
       <Navigate
-        to="/sign-in"
+        to="/login"
         replace={true}
       />
     );
