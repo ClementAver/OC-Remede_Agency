@@ -2,6 +2,7 @@ import Features from "../../components/Features/Features";
 import Hero from "../../components/Hero/Hero";
 import { useEffect } from "react";
 import { postOrUpdateProfile } from "../../utils/reducers/postUserProfile.reducer";
+import { updateToken } from "../../utils/reducers/postUserLogin.reducer";
 import { useDispatch } from "react-redux";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
     }
     if (cookieValue !== "") {
       dispatch(postOrUpdateProfile(cookieValue));
+      dispatch(updateToken(cookieValue));
     }
   }, [dispatch]);
 

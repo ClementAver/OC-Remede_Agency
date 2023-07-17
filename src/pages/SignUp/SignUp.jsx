@@ -59,7 +59,7 @@ export default function SignUp() {
                 name="email"
                 id="email"
                 ref={emailInput}
-                onKeyUp={handleEmail}
+                onChange={handleEmail}
               />
             </div>
             <div className="input-wrapper">
@@ -69,7 +69,7 @@ export default function SignUp() {
                 name="password"
                 id="password"
                 ref={passwordInput}
-                onKeyUp={handlePassword}
+                onChange={handlePassword}
               />
             </div>
             <div className="input-wrapper">
@@ -79,7 +79,7 @@ export default function SignUp() {
                 name="firstname"
                 id="firstname"
                 ref={firstNameInput}
-                onKeyUp={handleFirstName}
+                onChange={handleFirstName}
               />
             </div>
             <div className="input-wrapper">
@@ -89,7 +89,7 @@ export default function SignUp() {
                 name="lastname"
                 id="lastname"
                 ref={lastNameInput}
-                onKeyUp={handleLastName}
+                onChange={handleLastName}
               />
             </div>
             <Button

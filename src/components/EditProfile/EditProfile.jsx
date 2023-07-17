@@ -27,8 +27,10 @@ export default function EditProfile() {
     setLastName(lastNameInput.current.value);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
     dispatch(putOrUpdateEditProfile(firstName, lastName));
+    // bug ici
     dispatch(postOrUpdateProfile());
     setDeployed(!deployed);
   };
@@ -49,14 +51,16 @@ export default function EditProfile() {
               name="firstname"
               id="firstname"
               ref={firstNameInput}
-              onKeyUp={handleFirstName}
+              onChange={handleFirstName}
+              value={firstName}
             ></input>
             <input
               type="text"
               name="lastname"
               id="lastname"
               ref={lastNameInput}
-              onKeyUp={handleLastName}
+              onChange={handleLastName}
+              value={lastName}
             ></input>
           </div>
           <div>

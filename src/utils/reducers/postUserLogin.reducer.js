@@ -85,6 +85,16 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
+    updateToken: (draft, token) => {
+      draft.status = "resolved";
+      draft.data.status = 200;
+      draft.data.message = "User successfully logged in";
+      if (token) {
+        draft.data.body.token = token;
+      }
+      return;
+    },
+
     resetLogin: (draft) => {
       if (draft.data !== initialState.data) {
         draft.status = "void";
@@ -102,5 +112,5 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { postLogin, loginResolved, loginRejected, resetLogin } = actions;
+export const { postLogin, loginResolved, loginRejected, resetLogin, updateToken } = actions;
 export { reducer as loginReducer };

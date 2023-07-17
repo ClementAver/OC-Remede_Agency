@@ -25,6 +25,11 @@ body {
   background-color: #12002b;
 }
 
+.invalid-field {
+  color: red;
+  font-size: 0.8rem;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -231,6 +236,7 @@ body {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+  margin-bottom: 0.4rem;
 }
 
 .sign-in-link {
@@ -317,6 +323,9 @@ body {
 .edit-profile form {
   display: flex;
   flex-flow: column nowrap;
+}
+.edit-profile form input {
+  height: 2rem;
 }
 .edit-profile form > div {
   margin-bottom: 1rem;

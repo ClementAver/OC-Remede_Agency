@@ -6,6 +6,10 @@
     display: flex;
     flex-flow: column nowrap;
 
+    input {
+      height: 2rem;
+    }
+
     > div {
       margin-bottom: 1rem;
       display: flex;
