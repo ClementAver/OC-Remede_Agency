@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button/Button";
 
 import { putOrUpdateEditProfile } from "../../utils/reducers/putUserProfile.reducer";
@@ -8,6 +8,8 @@ import { postOrUpdateProfile } from "../../utils/reducers/postUserProfile.reduce
 export default function EditProfile() {
   const dispatch = useDispatch();
   const [deployed, setDeployed] = useState(false);
+
+  const editedBody = useSelector((state) => state.editProfile.data.body);
 
   const firstNameInput = useRef();
   const lastNameInput = useRef();
@@ -31,9 +33,12 @@ export default function EditProfile() {
     e.preventDefault();
     dispatch(putOrUpdateEditProfile(firstName, lastName));
     // bug ici
-    dispatch(postOrUpdateProfile());
     setDeployed(!deployed);
   };
+
+  useEffect(() => {
+    dispatch(postOrUpdateProfile());
+  }, [dispatch, editedBody]);
 
   return (
     <section className="edit-profile">
