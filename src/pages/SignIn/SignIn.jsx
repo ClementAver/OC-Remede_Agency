@@ -15,6 +15,7 @@ export default function SignIn() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
 
   const usernameInput = useRef();
   const passwordInput = useRef();
@@ -31,9 +32,8 @@ export default function SignIn() {
     setPassword(passwordInput.current.value);
   };
 
-  const [remember, setRemember] = useState(false);
   const handleRemember = () => {
-    setRemember(rememberInput.current.checked);
+    // setRemember(rememberInput.current.checked);
   };
 
   if (token !== null) {
