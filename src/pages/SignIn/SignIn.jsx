@@ -33,7 +33,7 @@ export default function SignIn() {
   };
 
   const handleRemember = () => {
-    // setRemember(rememberInput.current.checked);
+    setRemember(rememberInput.current.checked);
   };
 
   if (token !== null) {
