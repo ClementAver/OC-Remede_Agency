@@ -20,9 +20,6 @@ export function postOrUpdateLogin(username, password) {
     }
     dispatch(postLogin());
     try {
-      // const username = document.getElementById("username").value;
-      // const password = document.getElementById("password").value;
-
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
@@ -85,14 +82,11 @@ const { actions, reducer } = createSlice({
         return;
       }
     },
-    updateToken: (draft, token) => {
+    updateToken: (draft, action) => {
       draft.status = "resolved";
       draft.data.status = 200;
       draft.data.message = "User successfully logged in";
-      if (token) {
-        draft.data.body.token = token;
-      }
-      return;
+      draft.data.body.token = action.payload;
     },
 
     resetLogin: (draft) => {

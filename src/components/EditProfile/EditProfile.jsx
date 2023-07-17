@@ -32,7 +32,6 @@ export default function EditProfile() {
   const handleSave = async (e) => {
     e.preventDefault();
     dispatch(putOrUpdateEditProfile(firstName, lastName));
-    // bug ici
     setDeployed(!deployed);
   };
 
