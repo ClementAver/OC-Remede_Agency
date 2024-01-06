@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Remede Agency
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div>
+  <img alt="Static Badge" src="https://img.shields.io/badge/React-blue">
+  <img alt="Static Badge" src="https://img.shields.io/badge/React%20Router%20-red">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Redux-764abc">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Sass-pink">
+</div>
 
-## Available Scripts
+Remede Agency, specialised in web application development, entrusted us with a project for Argent Bank. Argent Bank wanted to develop a web application to access to their services. The application should allow users to log in and manage their bank accounts and profiles. In this project, we were involved in the code base for the authentication part. For the transactional part, all we had to do was define relevant endpoints for their API. For this, we were gived a Swagger documentation. This project was also an opportunity to discover global state management through the storage of user identifiers.
 
-In the project directory, you can run:
+<br/><br/>
 
-### `npm start`
+<p align="center">
+  <img src="public/assets/README/Screenshot-homepage.png" alt="Screenshot of the webpage" width="600"/>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">
+  <img src="public/assets/README/Screenshot-login.png" alt="Screenshot of the webpage" width="600"/>
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center">
+  <img src="public/assets/README/Screenshot-accounts.png" alt="Screenshot of the webpage" width="600"/>
+</p>
