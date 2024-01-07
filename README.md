@@ -1,7 +1,7 @@
 # Remede Agency
 
 <div>
-  <img alt="Static Badge" src="https://img.shields.io/badge/React-blue">
+  <img alt="Static Badge" src="https://img.shields.io/badge/React-61dafb">
   <img alt="Static Badge" src="https://img.shields.io/badge/React%20Router%20-red">
   <img alt="Static Badge" src="https://img.shields.io/badge/Redux-764abc">
   <img alt="Static Badge" src="https://img.shields.io/badge/Sass-pink">
